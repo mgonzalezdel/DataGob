@@ -1,14 +1,42 @@
-services:
-  mi_mysql_db:
-    image: mysql:latest
-    container_name: datagob_db
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-    ports:
-      - "3306:3306"
-    volumes:
-      - datagob_datos:/var/lib/mysql
-    restart: no
-
-volumes:
-  datagob_datos:
+services: 
+  mi_mysql_db: 
+    image: mysql:latest 
+    container_name: datagob_db 
+    environment: 
+      MYSQL_ROOT_PASSWORD: admin 
+      MYSQL_DATABASE: datagob 
+    ports: 
+      - "3306:3306" 
+    volumes: 
+      - datagob_mysql_datos:/var/lib/mysql 
+    restart: "no" 
+    
+  mi_postgres_db: 
+    image: postgres:latest 
+    container_name: datagob_postgres_db 
+    environment: 
+      POSTGRES_DB: datagob 
+      POSTGRES_USER: postgres 
+      POSTGRES_PASSWORD: admin 
+    ports: 
+      - "5432:5432" 
+    volumes: 
+      - datagob_postgres_datos:/var/lib/postgresql/data 
+    restart: "no" 
+    
+  mi_mariadb_db: 
+    image: mariadb:latest 
+    container_name: datagob_mariadb_db 
+    environment: 
+      MARIADB_DATABASE: datagob 
+      MARIADB_ROOT_PASSWORD: admin 
+    ports: 
+      - "3307:3306" 
+    volumes: 
+      - datagob_mariadb_datos:/var/lib/mysql 
+    restart: "no" 
+    
+volumes: 
+  datagob_mysql_datos: 
+  datagob_postgres_datos: 
+  datagob_mariadb_datos:
