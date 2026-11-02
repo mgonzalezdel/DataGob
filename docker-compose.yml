@@ -17,7 +17,8 @@ services:
     environment: 
       POSTGRES_DB: datagob 
       POSTGRES_USER: postgres 
-      POSTGRES_PASSWORD: admin 
+      POSTGRES_PASSWORD: admin
+      PGDATA: /var/lib/postgresql/data/pgdata
     ports: 
       - "5432:5432" 
     volumes: 
@@ -35,6 +36,17 @@ services:
     volumes: 
       - datagob_mariadb_datos:/var/lib/mysql 
     restart: "no" 
+
+  adminer: 
+    image: adminer:latest 
+    container_name: datagob_adminer 
+    ports: 
+      - "8080:8080" 
+    depends_on: 
+      - mi_mysql_db 
+      - mi_postgres_db 
+      - mi_mariadb_db 
+    restart: "no"
     
 volumes: 
   datagob_mysql_datos: 

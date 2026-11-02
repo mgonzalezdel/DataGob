@@ -1,5 +1,11 @@
-import pymysql 
-import psycopg2 
+import os
+import pymysql
+import psycopg2
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+RUTA_MYSQL = os.path.join(BASE_DIR, 'scriptMySQL.sql')
+RUTA_POSTGRES = os.path.join(BASE_DIR, 'scriptPostgres.sql')
 
 # Configuración de conexiones a los tres motores de base de datos 
 MYSQL_CONFIG = {
@@ -44,5 +50,30 @@ def ejecutar_sql_file_mysql(config, ruta_archivo):
     conn.commit()
     conn.close()
 
-def ejecutar\_sql\_file\_postgres(config, ruta\_archivo): """Lee un archivo SQL y ejecuta sus sentencias en PostgreSQL.""" with open(ruta\_archivo, 'r', encoding='utf-8') as f: sql\_script = f.read() conn = psycopg2.connect(\*\*config) cursor = conn.cursor() cursor.execute(sql\_script) conn.commit() conn.close() if \_\_name\_\_ == "\_\_main\_\_": try: # 1\. Ejecutar script MySQL para la BD MySQL print("Ejecutando scriptMySQL.sql en MySQL...") ejecutar\_sql\_file\_mysql(MYSQL\_CONFIG, 'scriptMySQL.sql') # 2\. Reutilizar scriptMySQL.sql para MariaDB (misma sintaxis DDL) print("Ejecutando scriptMySQL.sql en MariaDB...") ejecutar\_sql\_file\_mysql(MARIADB\_CONFIG, 'scriptMySQL.sql') # 3\. Ejecutar scriptPostgres.sql para PostgreSQL print("Ejecutando scriptPostgres.sql en PostgreSQL...") ejecutar\_sql\_file\_postgres(POSTGRES\_CONFIG, 'scriptPostgres.sql') print("-&gt; Estructura de las 10 tablas creada correctamente en las 3 bases de datos.") 
+def ejecutar_sql_file_postgres(config, ruta_archivo): 
+    """Lee un archivo SQL y ejecuta sus sentencias en PostgreSQL.""" 
+    with open(ruta_archivo, 'r', encoding='utf-8') as f: 
+        sql_script = f.read() 
+        conn = psycopg2.connect(**config) 
+        
+        cursor = conn.cursor() 
+        cursor.execute(sql_script) 
+        
+        conn.commit() 
+        conn.close() 
+        
+if __name__ == "__main__": 
+    try: 
+        # 1. Ejecutar script MySQL para la BD MySQL 
+        print("Ejecutando scriptMySQL.sql en MySQL...") 
+        ejecutar_sql_file_mysql(MYSQL_CONFIG, RUTA_MYSQL) 
+        # 2. Reutilizar scriptMySQL.sql para MariaDB (misma sintaxis DDL) 
+        print("Ejecutando scriptMySQL.sql en MariaDB...") 
+        ejecutar_sql_file_mysql(MARIADB_CONFIG, RUTA_MYSQL) 
+        # 3. Ejecutar scriptPostgres.sql para PostgreSQL 
+        print("Ejecutando scriptPostgres.sql en PostgreSQL...") 
+        ejecutar_sql_file_postgres(POSTGRES_CONFIG, RUTA_POSTGRES) 
+        
+        print("-&gt; Estructura de las 10 tablas creada correctamente en las 3 bases de datos.")
+
     except Exception as e: print(f"Error al ejecutar los scripts de creación: {e}")
