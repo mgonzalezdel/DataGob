@@ -1,29 +1,29 @@
 services: 
-  mi_mysql_db: 
-    image: mysql:latest 
-    container_name: datagob_db 
-    environment: 
-      MYSQL_ROOT_PASSWORD: admin 
-      MYSQL_DATABASE: datagob 
-    ports: 
-      - "3306:3306" 
-    volumes: 
-      - datagob_mysql_datos:/var/lib/mysql 
-    restart: "no" 
+  # mi_mysql_db: 
+  #   image: mysql:latest 
+  #   container_name: datagob_db 
+  #   environment: 
+  #     MYSQL_ROOT_PASSWORD: admin 
+  #     MYSQL_DATABASE: datagob 
+  #   ports: 
+  #     - "3306:3306" 
+  #   volumes: 
+  #     - datagob_mysql_datos:/var/lib/mysql 
+  #   restart: "no"
     
-  mi_postgres_db: 
-    image: postgres:latest 
-    container_name: datagob_postgres_db 
-    environment: 
-      POSTGRES_DB: datagob 
-      POSTGRES_USER: postgres 
-      POSTGRES_PASSWORD: admin
-      PGDATA: /var/lib/postgresql/data/pgdata
-    ports: 
-      - "5432:5432" 
-    volumes: 
-      - datagob_postgres_datos:/var/lib/postgresql/data 
-    restart: "no" 
+  # mi_postgres_db: 
+  #   image: postgres:latest 
+  #   container_name: datagob_postgres_db 
+  #   environment: 
+  #     POSTGRES_DB: datagob 
+  #     POSTGRES_USER: postgres 
+  #     POSTGRES_PASSWORD: admin
+  #     PGDATA: /var/lib/postgresql/data/pgdata
+  #   ports: 
+  #     - "5432:5432" 
+  #   volumes: 
+  #     - datagob_postgres_datos:/var/lib/postgresql/data 
+  #   restart: "no" 
     
   mi_mariadb_db: 
     image: mariadb:latest 
@@ -43,12 +43,23 @@ services:
     ports: 
       - "8080:8080" 
     depends_on: 
-      - mi_mysql_db 
-      - mi_postgres_db 
+      # - mi_mysql_db 
+      # - mi_postgres_db 
       - mi_mariadb_db 
+    restart: "no"
+  
+  mi_redis_db: 
+    image: redis/redis-stack:latest 
+    container_name: datagob_redis_db 
+    ports: 
+      - "6379:6379" 
+      - "8001:8001" 
+    volumes: 
+      - datagob_redis_datos:/data 
     restart: "no"
     
 volumes: 
-  datagob_mysql_datos: 
-  datagob_postgres_datos: 
+  # datagob_mysql_datos: 
+  # datagob_postgres_datos: 
   datagob_mariadb_datos:
+  datagob_redis_datos:

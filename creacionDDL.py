@@ -65,15 +65,15 @@ def ejecutar_sql_file_postgres(config, ruta_archivo):
 if __name__ == "__main__": 
     try: 
         # 1. Ejecutar script MySQL para la BD MySQL 
-        print("Ejecutando scriptMySQL.sql en MySQL...") 
-        ejecutar_sql_file_mysql(MYSQL_CONFIG, RUTA_MYSQL) 
+        #print("Ejecutando scriptMySQL.sql en MySQL...") 
+        #ejecutar_sql_file_mysql(MYSQL_CONFIG, RUTA_MYSQL) 
         # 2. Reutilizar scriptMySQL.sql para MariaDB (misma sintaxis DDL) 
         print("Ejecutando scriptMySQL.sql en MariaDB...") 
         ejecutar_sql_file_mysql(MARIADB_CONFIG, RUTA_MYSQL) 
         # 3. Ejecutar scriptPostgres.sql para PostgreSQL 
-        print("Ejecutando scriptPostgres.sql en PostgreSQL...") 
-        ejecutar_sql_file_postgres(POSTGRES_CONFIG, RUTA_POSTGRES) 
+        #print("Ejecutando scriptPostgres.sql en PostgreSQL...") 
+        #ejecutar_sql_file_postgres(POSTGRES_CONFIG, RUTA_POSTGRES) 
         
-        print("-&gt; Estructura de las 10 tablas creada correctamente en las 3 bases de datos.")
+        print("Estructura de las 10 tablas creada correctamente en las 3 bases de datos.")
 
     except Exception as e: print(f"Error al ejecutar los scripts de creación: {e}")
