@@ -1,0 +1,88 @@
+{
+  "proyecto": "DataGob - Integracion Hibrida RDS + DynamoDB",
+  "total_organismos_integrados": 2,
+  "organismos": [
+    {
+      "organismo_id": "ORG-01",
+      "nombre": "Ministerio de Hacienda",
+      "datos_institucionales_rds": {
+        "ambito": "Estatal",
+        "comunidad": "Madrid",
+        "empleados": 12500,
+        "publicaciones_destacadas": [
+          {
+            "pub_id": 1,
+            "organismo_id": "ORG-01",
+            "categoria": "Economia",
+            "titulo": "Ejecucion Presupuestaria Mensual",
+            "descargas_totales": 4200,
+            "fecha_alta": "2026-02-10"
+          },
+          {
+            "pub_id": 2,
+            "organismo_id": "ORG-01",
+            "categoria": "Economia",
+            "titulo": "Recaudacion Tributaria Provincial",
+            "descargas_totales": 3150,
+            "fecha_alta": "2026-04-05"
+          }
+        ]
+      },
+      "datos_operativos_dynamodb": {
+        "sector": "Economia",
+        "presupuesto_anual": 900000,
+        "licitaciones_adjudicadas": [
+          {
+            "importe": 120000,
+            "estado": "ADJUDICADA",
+            "licitacion_id": "LIC-501",
+            "organismo_id": "ORG-01",
+            "concepto": "Portal Tributario"
+          }
+        ],
+        "datasets_alta_demanda": [
+          {
+            "descargas": 1450,
+            "categoria": "Economia",
+            "titulo": "Presupuestos Generales",
+            "fecha_publicacion": "2026-01-15",
+            "dataset_id": "DS-101"
+          }
+        ]
+      }
+    },
+    {
+      "organismo_id": "ORG-02",
+      "nombre": "Ministerio de Ciencia",
+      "datos_institucionales_rds": {
+        "ambito": "Estatal",
+        "comunidad": "Madrid",
+        "empleados": 4800,
+        "publicaciones_destacadas": [
+          {
+            "pub_id": 3,
+            "organismo_id": "ORG-02",
+            "categoria": "Tecnologia",
+            "titulo": "Proyectos I+D Financiados",
+            "descargas_totales": 2890,
+            "fecha_alta": "2026-03-18"
+          }
+        ]
+      },
+      "datos_operativos_dynamodb": {
+        "sector": "Tecnologia",
+        "presupuesto_anual": 620000,
+        "licitaciones_adjudicadas": [
+          {
+            "importe": 340000,
+            "licitacion_id": "LIC-502",
+            "estado": "ADJUDICADA",
+            "organismo_id": "ORG-02",
+            "concepto": "Supercomputacion IA"
+          }
+        ],
+        "datasets_alta_demanda": []
+      }
+    }
+  ]
+}
